@@ -293,14 +293,7 @@ export default function App() {
               {processOptions.map(p => <option key={p} value={p}>{p}</option>)}
             </select>
           </Field>
-
-          <Field label="品番（空欄可）">
-            <select value={partNo} onChange={(e) => setPartNo(e.target.value)} style={styles.select} disabled={!!jobCode}>
-              <option value="">（空欄）</option>
-              {partOptions.filter(x => x !== "").map(p => <option key={p} value={p}>{p}</option>)}
-            </select>
-          </Field>
-
+          
           <Field label="作業日（必須）">
             <input type="date" value={workDate} onChange={(e) => setWorkDate(e.target.value)} style={styles.input} />
           </Field>
