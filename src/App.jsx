@@ -68,7 +68,7 @@ export default function App() {
 
     const hit = works.find(w => w.jobCode === jobCode);
     if (!hit) {
-      setError("内職コードが作業マスタに見つからないっぽい。コード確認して。");
+      setError("内職コードが作業マスタに見つかりません。コードを確認してください。");
       setUnitPrice(0);
       return;
     }
@@ -167,7 +167,6 @@ export default function App() {
       "内職コード": jobCode,
       "商品": product,
       "工程": process,
-      "品番": partNo || "",
       "作業日": workDate,
       "数量": q,
       "単価": unitPrice,
@@ -273,7 +272,7 @@ export default function App() {
                 type="button"
                 onClick={() => setJobCode("")}
                 style={styles.btnGhost}
-                title="コード入力を消して、商品/工程/品番ルートに戻す"
+                title="コード入力を消して、商品/工程ルートに戻す"
               >
                 クリア
               </button>
@@ -351,7 +350,7 @@ export default function App() {
             </div>
             <div id={qrRegionId} style={{ width: 320, maxWidth: "100%" }} />
             <div style={{ marginTop: 8, fontSize: 12, color: "#666" }}>
-              ※HTTPSじゃないとカメラ動かないこと多い。ローカルはOKな場合もあるけど、甘えは許されない。
+              ※HTTPSじゃないとカメラ動かないことがあります。
             </div>
           </div>
         </div>
