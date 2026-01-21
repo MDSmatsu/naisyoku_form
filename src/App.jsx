@@ -307,15 +307,7 @@ export default function App() {
               style={styles.input}
             />
           </Field>
-
-          <Field label="単価（必須 / 編集不可）">
-            <input value={unitPrice} readOnly style={styles.inputReadOnly} />
-          </Field>
-
-          <Field label="金額（必須 / 編集不可）">
-            <input value={amount} readOnly style={styles.inputReadOnly} />
-          </Field>
-
+          
           <Field label="登録日時（必須 / 編集不可）">
             <input value={formatJstYYYYMMDDHHMMSS()} readOnly style={styles.inputReadOnly} />
             <Hint>保存されるのは ISO（UTC）※必要ならJST文字列で保存に変更可</Hint>
