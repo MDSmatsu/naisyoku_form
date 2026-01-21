@@ -26,6 +26,9 @@ export default function App() {
   const [unitPrice, setUnitPrice] = useState(0);
   const [amount, setAmount] = useState(0);
 
+  const [toast, setToast] = useState(null);
+// toast = { message: string }
+
   // QR
   const [qrOpen, setQrOpen] = useState(false);
   const qrRegionId = "qr-reader";
@@ -116,6 +119,13 @@ export default function App() {
     return Math.round((Number(n) + Number.EPSILON) * 100) / 100;
   }
 
+  function showToast(message, duration = 3000) {
+  setToast({ message });
+  setTimeout(() => {
+    setToast(null);
+  }, duration);
+}
+
   function formatJstYYYYMMDDHHMMSS(date = new Date()) {
   const pad = (n) => String(n).padStart(2, "0");
   // JSTにしたいので Intl で Asia/Tokyo を指定してから分解
@@ -175,6 +185,9 @@ export default function App() {
 
     try {
       await addRecord(payload);
+      showToast(
+  `登録しました。\n${workDate} / ${product} / ${process} / 数量: ${q}`
+);
       resetForNext();
     } catch (e2) {
       setError(String(e2.message || e2));
@@ -340,6 +353,13 @@ export default function App() {
           </div>
         </div>
       )}
+      {toast && (
+  <div style={styles.toast}>
+    {toast.message.split("\n").map((line, i) => (
+      <div key={i}>{line}</div>
+    ))}
+  </div>
+)}
     </div>
   );
 }
@@ -372,4 +392,18 @@ const styles = {
   btnPrimary: { padding: "10px 14px", borderRadius: 12, border: "1px solid #111", background: "#111", color: "#fff", cursor: "pointer" },
   modalBg: { position: "fixed", inset: 0, background: "rgba(0,0,0,0.35)", display: "flex", justifyContent: "center", alignItems: "center", padding: 16 },
   modal: { background: "#fff", borderRadius: 16, padding: 14, width: 420, maxWidth: "100%" },
+  toast: {
+  position: "fixed",
+  right: 20,
+  bottom: 20,
+  background: "#111",
+  color: "#fff",
+  padding: "14px 18px",
+  borderRadius: 14,
+  fontSize: 14,
+  lineHeight: 1.5,
+  boxShadow: "0 10px 30px rgba(0,0,0,0.3)",
+  zIndex: 9999,
+  whiteSpace: "pre-line",
+},
 };
