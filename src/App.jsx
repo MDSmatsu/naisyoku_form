@@ -167,15 +167,15 @@ export default function App() {
     setError("");
 
     const q = Number(qty);
-    if (!recordId) return setError("実績IDが空です。");
-    if (!workerCode) return setError("内職者コードは必須です。");
-    if (!jobCode) return setError("内職コードは必須です。（QR or 手入力 or 商品選択で自動入力して）。");
-    if (!product) return setError("商品は必須です。");
-    if (!process) return setError("工程は必須です。");
-    if (!workDate) return setError("作業日は必須です。");
-    if (!Number.isFinite(q)) return setError("数量が数字ではありません。");
-    if (q <= 0) return setError("数量は0より大きくしてください。");
-    if (!Number.isFinite(unitPrice) || unitPrice <= 0) return setError("単価が読み取れません（作業マスタを確認）。");
+    if (!recordId) return setError("実績IDが空。");
+    if (!workerCode) return setError("内職者コードは必須。");
+    if (!jobCode) return setError("内職コードは必須（QR or 手入力 or 商品選択で自動入力して）。");
+    if (!product) return setError("商品は必須。");
+    if (!process) return setError("工程は必須。");
+    if (!workDate) return setError("作業日は必須。");
+    if (!Number.isFinite(q)) return setError("数量が数字じゃない。");
+    if (q <= 0) return setError("数量は0より大きく。");
+    if (!Number.isFinite(unitPrice) || unitPrice <= 0) return setError("単価が取れてない（作業マスタ確認）。");
 
     const payload = {
       実績ID: recordId,
@@ -227,7 +227,7 @@ export default function App() {
           () => {}
         );
       } catch (e) {
-        setError("QR起動に失敗しました。カメラ権限/HTTPS/ブラウザ対応を確認してください。 " + String(e));
+        setError("QR起動に失敗。カメラ権限/HTTPS/ブラウザ対応を確認して。 " + String(e));
         setQrOpen(false);
       }
     };
@@ -250,7 +250,7 @@ export default function App() {
   }, [qrOpen]);
 
   if (loading) {
-    return <div style={styles.page}>読み込み中…</div>;
+    return <div style={styles.page}>読み込み中…☕</div>;
   }
 
   const workerLabel = (c) => {
@@ -272,7 +272,7 @@ export default function App() {
 
           <Field label="内職者コード（必須）">
             <select value={workerCode} onChange={(e) => setWorkerCode(e.target.value)} style={styles.select}>
-              <option value="">選択</option>
+              <option value="">選択して</option>
               {workers.map((w) => (
                 <option key={w.workerCode} value={w.workerCode}>
                   {w.workerCode} {w.workerName}
@@ -311,14 +311,14 @@ export default function App() {
               style={styles.select}
               disabled={!!jobCode || isSubmitting}
             >
-              <option value="">選択</option>
+              <option value="">選択して</option>
               {productOptions.map((p) => (
                 <option key={p} value={p}>
                   {p}
                 </option>
               ))}
             </select>
-            {!!jobCode && }
+            {!!jobCode && <Hint>内職コード入力中は自動反映（手で変えると事故る）</Hint>}
           </Field>
 
           <Field label="工程（必須）">
@@ -328,7 +328,7 @@ export default function App() {
               style={styles.select}
               disabled={!!jobCode || isSubmitting}
             >
-              <option value="">選択</option>
+              <option value="">選択して</option>
               {processOptions.map((p) => (
                 <option key={p} value={p}>
                   {p}
@@ -360,6 +360,7 @@ export default function App() {
 
           <Field label="登録日時（必須 / 編集不可）">
             <input value={formatJstYYYYMMDDHHMMSS()} readOnly style={styles.inputReadOnly} />
+            <Hint>保存されるのは ISO（UTC）※必要ならJST文字列で保存に変更可</Hint>
           </Field>
         </div>
 
