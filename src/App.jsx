@@ -272,7 +272,7 @@ export default function App() {
 
           <Field label="内職者コード（必須）">
             <select value={workerCode} onChange={(e) => setWorkerCode(e.target.value)} style={styles.select}>
-              <option value="">選択して</option>
+              <option value="">選択</option>
               {workers.map((w) => (
                 <option key={w.workerCode} value={w.workerCode}>
                   {w.workerCode} {w.workerName}
@@ -311,7 +311,7 @@ export default function App() {
               style={styles.select}
               disabled={!!jobCode || isSubmitting}
             >
-              <option value="">選択して</option>
+              <option value="">選択</option>
               {productOptions.map((p) => (
                 <option key={p} value={p}>
                   {p}
@@ -328,7 +328,7 @@ export default function App() {
               style={styles.select}
               disabled={!!jobCode || isSubmitting}
             >
-              <option value="">選択して</option>
+              <option value="">選択</option>
               {processOptions.map((p) => (
                 <option key={p} value={p}>
                   {p}
@@ -360,7 +360,6 @@ export default function App() {
 
           <Field label="登録日時（必須 / 編集不可）">
             <input value={formatJstYYYYMMDDHHMMSS()} readOnly style={styles.inputReadOnly} />
-            <Hint>保存されるのは ISO（UTC）※必要ならJST文字列で保存に変更可</Hint>
           </Field>
         </div>
 
