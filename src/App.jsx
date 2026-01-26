@@ -167,15 +167,15 @@ export default function App() {
     setError("");
 
     const q = Number(qty);
-    if (!recordId) return setError("実績IDが空。");
-    if (!workerCode) return setError("内職者コードは必須。");
-    if (!jobCode) return setError("内職コードは必須（QR or 手入力 or 商品選択で自動入力して）。");
-    if (!product) return setError("商品は必須。");
-    if (!process) return setError("工程は必須。");
-    if (!workDate) return setError("作業日は必須。");
-    if (!Number.isFinite(q)) return setError("数量が数字じゃない。");
-    if (q <= 0) return setError("数量は0より大きく。");
-    if (!Number.isFinite(unitPrice) || unitPrice <= 0) return setError("単価が取れてない（作業マスタ確認）。");
+    if (!recordId) return setError("実績IDが空です。");
+    if (!workerCode) return setError("内職者コードは必須です。");
+    if (!jobCode) return setError("内職コードは必須です（QR or 手入力 or 商品選択で自動入力して）。");
+    if (!product) return setError("商品は必須です。");
+    if (!process) return setError("工程は必須です。");
+    if (!workDate) return setError("作業日は必須です。");
+    if (!Number.isFinite(q)) return setError("数量が数字ではありません。");
+    if (q <= 0) return setError("数量は0より大きくしてください。");
+    if (!Number.isFinite(unitPrice) || unitPrice <= 0) return setError("単価が読み取れません（作業マスタ確認）。");
 
     const payload = {
       実績ID: recordId,
