@@ -358,6 +358,14 @@ export default function App() {
             />
           </Field>
 
+          <Field label="単価（自動 / 編集不可）">
+  <input
+    value={unitPrice}
+    readOnly
+    style={styles.inputReadOnly}
+  />
+</Field>
+
           <Field label="登録日時（必須 / 編集不可）">
             <input value={formatJstYYYYMMDDHHMMSS()} readOnly style={styles.inputReadOnly} />
           </Field>
