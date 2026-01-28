@@ -366,6 +366,15 @@ export default function App() {
   />
 </Field>
 
+          <Field label="金額（自動）">
+  <input
+    value={amount}
+    readOnly
+    style={styles.inputReadOnly}
+  />
+</Field>
+
+
           <Field label="登録日時（必須 / 編集不可）">
             <input value={formatJstYYYYMMDDHHMMSS()} readOnly style={styles.inputReadOnly} />
           </Field>
